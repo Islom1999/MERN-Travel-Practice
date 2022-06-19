@@ -41,7 +41,7 @@ const getTravelById = async(req,res) => {
 
 const addTravelBook = async(req,res) => {
     try {
-        const {title,image,descr} = req.body
+        const {title,image,descr} = req.body 
         const newTravel = await Travel.create({
             title,
             image,

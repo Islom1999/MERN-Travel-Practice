@@ -23,12 +23,12 @@ const getTravelById = async(req,res) => {
 
         if(!travel){
             return res.status(404).json({
-                message: 'success',
-                travel
+                message: 'Not found',
             })
         }
         return res.status(200).json({
-            message: 'Not found'
+            message: 'Not found',
+            travel
         })
 
     } catch (err) {
@@ -58,10 +58,46 @@ const addTravelBook = async(req,res) => {
     }
 }
 
+// method: put
+// descr: edit travel book by its id
+
+const updateTravelBook = async(req,res) => {
+    try {
+        const {title,image,descr} = req.body 
+        const updatedTravel = await Travel.findByIdAndUpdate(req.params.id,{
+            title,
+            image,
+            descr
+        })
+        res.status(200).json({
+            massage: 'success',
+            updatedTravel
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
+// method: delete
+// descr: remove travel book by its id
+
+const removeTravelBook = async(req,res) => {
+    try {
+        await Travel.findByIdAndRemove(req.params.id)
+        res.status(200).json({
+            massage: 'deleted',
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 
 module.exports = {
     getAllTravels,
     getTravelById,
-    addTravelBook
+    addTravelBook,
+    updateTravelBook,
+    removeTravelBook
 }
 

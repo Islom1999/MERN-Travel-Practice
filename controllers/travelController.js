@@ -1,16 +1,18 @@
 const Travel = require('../models/travel.modal')
+
 // method: get
 // descr: get all travels books
 
 const getAllTravels = async (req,res) => {
     try {
         const travel = await Travel.find()
+        
         res.status(200).json({
             massage: 'success',
             travel
         })
-    } catch (error) {
-        console.log(error)
+    } catch (err) {
+        console.log(err)
     }
 }
 
@@ -20,7 +22,7 @@ const getAllTravels = async (req,res) => {
 const getTravelById = async(req,res) => {
     try {
         const travel = await Travel.findById(req.params.id)
-
+        
         if(!travel){
             return res.status(404).json({
                 message: 'Not found',

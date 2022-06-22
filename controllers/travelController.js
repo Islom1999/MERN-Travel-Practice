@@ -9,7 +9,7 @@ const getAllTravels = async (req,res) => {
         
         res.status(200).json({
             massage: 'success',
-            travel
+            travel: travel.reverse()
         })
     } catch (err) {
         console.log(err)
@@ -29,7 +29,7 @@ const getTravelById = async(req,res) => {
             })
         }
         return res.status(200).json({
-            message: 'Not found',
+            message: 'success',
             travel
         })
 
